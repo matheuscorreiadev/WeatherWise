@@ -666,3 +666,228 @@ select:hover{
   }
 
 }
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:1100px){
+
+  .forecast-grid{
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+  }
+
+}
+
+@media (max-width:900px){
+
+  body{
+    padding:12px;
+  }
+
+  .container{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .card{
+
+    padding:18px;
+
+  }
+
+}
+
+@media (max-width:700px){
+
+  body{
+
+    padding:10px;
+
+  }
+
+  .container{
+
+    width:100%;
+
+    overflow:hidden;
+
+  }
+
+  .card{
+
+    padding:16px;
+
+    border-radius:20px;
+
+  }
+
+  /* SEARCH */
+
+  .search-box{
+
+    flex-direction:column;
+
+  }
+
+  .search-box input,
+  .search-box button,
+  #locationBtn{
+
+    width:100%;
+
+  }
+
+  /* TOP BAR */
+
+  .top-bar{
+
+    flex-direction:column;
+
+    align-items:stretch;
+
+  }
+
+  .controls{
+
+    width:100%;
+
+    display:flex;
+
+  }
+
+  .controls select{
+
+    flex:1;
+
+    min-width:0;
+
+  }
+
+  /* CURRENT */
+
+  .temp{
+
+    font-size:3rem;
+
+  }
+
+  .weather-icon{
+
+    width:110px;
+
+  }
+
+  /* METRICS */
+
+  .metrics{
+
+    grid-template-columns:1fr;
+
+  }
+
+  /* FORECAST */
+
+  .forecast-grid{
+
+    grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+  }
+
+  .forecast-card{
+
+    padding:14px 10px;
+
+  }
+
+  .forecast-card img{
+
+    width:45px;
+
+  }
+
+  .forecast-card h3{
+
+    font-size:.95rem;
+
+  }
+
+  .forecast-card p{
+
+    font-size:.8rem;
+
+  }
+
+  /* HOURLY */
+
+  .hourly-grid{
+
+    grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+  }
+
+  .hour-card{
+
+    padding:14px;
+
+  }
+
+  .hour-card img{
+
+    width:40px;
+
+  }
+
+  /* FAVORITES */
+
+  .favorites{
+
+    padding:14px;
+
+  }
+
+  .favorite-item{
+
+    padding:10px;
+
+  }
+
+}
+
+@media (max-width:450px){
+
+  .forecast-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .hourly-grid{
+
+    grid-template-columns:1fr 1fr;
+
+  }
+
+  .temp{
+
+    font-size:2.5rem;
+
+  }
+
+  .weather-icon{
+
+    width:90px;
+
+  }
+
+}
