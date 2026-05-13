@@ -464,3 +464,123 @@ function changeBackground(code){
   }
 
 }
+
+/* THEME */
+
+function applyTheme(theme){
+
+  if(theme === "light"){
+
+    document.body.classList.add("light");
+
+    themeIcon.innerHTML = `
+
+      <circle cx="12" cy="12" r="5"></circle>
+
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+
+    `;
+
+  } else {
+
+    document.body.classList.remove("light");
+
+    themeIcon.innerHTML = `
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path>
+    `;
+
+  }
+
+}
+
+themeToggle.addEventListener("click",()=>{
+
+  const isLight =
+  document.body.classList.contains("light");
+
+  const newTheme =
+  isLight ? "dark" : "light";
+
+  localStorage.setItem(
+    "theme",
+    newTheme
+  );
+
+  applyTheme(newTheme);
+
+});
+
+/* EVENTS */
+
+searchBtn.addEventListener("click",()=>{
+
+  const city =
+  searchInput.value.trim();
+
+  if(city){
+    searchCity(city);
+  }
+
+});
+
+searchInput.addEventListener("input",()=>{
+
+  const city =
+  searchInput.value.trim();
+
+  if(city.length >= 2){
+    searchCity(city);
+  }
+
+});
+
+searchInput.addEventListener("keydown",(e)=>{
+
+  if(e.key === "Enter"){
+    searchBtn.click();
+  }
+
+});
+
+unitSelect.addEventListener("change",()=>{
+
+  if(currentLat && currentLon){
+    fetchWeather();
+  }
+
+});
+
+locationBtn.addEventListener("click",()=>{
+
+  getUserLocation();
+
+});
+
+clearFavorites.addEventListener("click",()=>{
+
+  localStorage.removeItem("favorites");
+
+  renderFavorites();
+
+});
+
+/* INIT */
+
+renderFavorites();
+
+const savedTheme =
+localStorage.getItem("theme") || "dark";
+
+applyTheme(savedTheme);
+
+searchCity("");
