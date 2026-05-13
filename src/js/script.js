@@ -392,3 +392,75 @@ function getUserLocation(){
   });
 
 }
+
+/* FAVORITES */
+
+function saveFavorite(city){
+
+  let favorites =
+  JSON.parse(localStorage.getItem("favorites"))
+  || [];
+
+  if(!favorites.includes(city)){
+
+    favorites.push(city);
+
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify(favorites)
+    );
+
+  }
+
+  renderFavorites();
+
+}
+
+function renderFavorites(){
+
+  favoritesList.innerHTML = "";
+
+  let favorites =
+  JSON.parse(localStorage.getItem("favorites"))
+  || [];
+
+  favorites.forEach(city=>{
+
+    const item =
+    document.createElement("div");
+
+    item.className =
+    "favorite-item";
+
+    item.innerText =
+    city;
+
+    item.addEventListener("click",()=>{
+
+      searchCity(city);
+
+    });
+
+    favoritesList.appendChild(item);
+
+  });
+
+}
+
+/* BACKGROUND */
+
+function changeBackground(code){
+
+  if(code >= 61){
+
+    document.body.style.background =
+    "linear-gradient(to bottom right,#1e293b,#334155,#475569)";
+
+  }else{
+
+    document.body.style.background =
+    "linear-gradient(to bottom right,#0f172a,#1e293b,#334155)";
+
+  }
+
+}
