@@ -1,0 +1,58 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,
+body{
+  overflow-x:hidden;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+
+  --bg1:#0f172a;
+  --bg2:#1e293b;
+  --bg3:#334155;
+
+  --card:rgba(255,255,255,.08);
+
+  --border:rgba(255,255,255,.12);
+
+  --text:#ffffff;
+
+  --muted:#cbd5e1;
+
+  --accent:#38bdf8;
+
+  --hover:rgba(255,255,255,.12);
+
+}
+
+/* LIGHT MODE */
+
+.light{
+
+  --bg1:#dbeafe;
+  --bg2:#bfdbfe;
+  --bg3:#93c5fd;
+
+  --card:rgba(255,255,255,.72);
+
+  --border:rgba(255,255,255,.45);
+
+  --text:#0f172a;
+
+  --muted:#334155;
+
+  --hover:rgba(255,255,255,.45);
+
+}
