@@ -1,184 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Weather Wise</title>
-
-    <link rel="stylesheet" href="src/css/style.css" />
-
+<title>Weather Wise</title>
+<link rel="stylesheet" href="src/css/style.css" />
 </head>
 
 <body>
-
     <!-- LOADING -->
     <div id="loading" class="loading hidden">
         <div class="spinner"></div>
     </div>
-
     <div class="container">
-
         <!-- SIDEBAR -->
         <aside class="sidebar card">
-
             <!-- SEARCH -->
             <div class="search-wrapper">
-
                 <div class="search-box">
-
                     <input type="text" id="searchInput" placeholder="Digite uma cidade..." autocomplete="off" />
-
                     <button id="searchBtn">
                         Buscar
                     </button>
-
                     <button id="locationBtn">
                         📍
                     </button>
-
                 </div>
-
                 <!-- RESULTS -->
                 <div id="searchResults" class="search-results">
                 </div>
-
             </div>
-
             <!-- CURRENT -->
             <div class="current-weather">
-
                 <img id="weatherIcon" class="weather-icon" src="" alt="weather" />
-
                 <div id="temperature" class="temp">
                     --°
                 </div>
-
                 <div id="condition" class="condition">
                     --
                 </div>
-
                 <div id="location" class="location">
                     --
                 </div>
-
             </div>
-
             <!-- METRICS -->
             <div class="metrics">
-
                 <div class="metric">
                     <h4>Sensação térmica</h4>
                     <p id="feelsLike">--</p>
                 </div>
-
                 <div class="metric">
                     <h4>Umidade</h4>
                     <p id="humidity">--</p>
                 </div>
-
                 <div class="metric">
                     <h4>Vento</h4>
                     <p id="wind">--</p>
                 </div>
-
                 <div class="metric">
                     <h4>Precipitação</h4>
                     <p id="precipitation">--</p>
                 </div>
-
             </div>
-
             <!-- FAVORITES -->
             <div class="favorites">
-
                 <div class="favorites-header">
-
                     <h3>Favoritas</h3>
-
                     <button id="clearFavorites">
                         Limpar
                     </button>
-
                 </div>
-
                 <div id="favoritesList"></div>
-
             </div>
-
         </aside>
-
         <!-- MAIN -->
         <main class="main card">
-
             <!-- TOP -->
             <div class="top-bar">
-
                 <h2>Previsão de 7 dias</h2>
-
                 <div class="controls">
-
                     <select id="unitSelect">
-
                         <option value="metric">
                             Métrico °C
                         </option>
-
                         <option value="imperial">
                             Imperial °F
                         </option>
-
                     </select>
-
                     <!-- THEME BUTTON -->
                     <button id="themeToggle" class="theme-btn">
-
                         <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
-
                             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path>
-
                         </svg>
-
                     </button>
-
                 </div>
-
             </div>
-
             <!-- FORECAST -->
             <div class="forecast-grid" id="forecastGrid">
             </div>
-
             <!-- HOURLY -->
             <div class="hourly-section">
-
                 <h2 class="hourly-title">
                     Previsão horária
                 </h2>
-
                 <div id="hourlyGrid" class="hourly-grid">
                 </div>
-
             </div>
-
         </main>
-
     </div>
-
     <footer class="footer">
     Desenvolvido por 
     <a href="https://github.com/matheuscorreiadev" target="_blank" rel="noopener noreferrer">
         <strong>Matheus Correia</strong>
     </a>
 </footer>
-
     <script src="src/js/script.js"></script>
-
 </body>
-
 </html>
