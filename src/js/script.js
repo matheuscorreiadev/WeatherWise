@@ -168,3 +168,227 @@ async function searchCity(city){
   }
 
 }
+
+/* WEATHER */
+
+async function fetchWeather(){
+
+  try{
+
+    showLoading();
+
+    const unit =
+    unitSelect.value;
+
+    const tempUnit =
+    unit === "metric"
+    ? "celsius"
+    : "fahrenheit";
+
+    const windUnit =
+    unit === "metric"
+    ? "kmh"
+    : "mph";
+
+    const url =
+    `https://api.open-meteo.com/v1/forecast?
+    latitude=${currentLat}
+    &longitude=${currentLon}
+    &current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m
+    &daily=weather_code,temperature_2m_max,temperature_2m_min
+    &hourly=temperature_2m,weather_code
+    &forecast_days=7
+    &timezone=auto
+    &temperature_unit=${tempUnit}
+    &wind_speed_unit=${windUnit}`
+    .replace(/\s/g,"");
+
+    const response =
+    await fetch(url);
+
+    const data =
+    await response.json();
+
+    renderCurrent(data, unit);
+
+    renderForecast(data);
+
+    renderHourly(data, selectedDayIndex);
+
+    changeBackground(data.current.weather_code);
+
+    hideLoading();
+
+  }catch(error){
+
+    console.log(error);
+
+    hideLoading();
+
+  }
+
+}
+
+/* CURRENT */
+
+function renderCurrent(data, unit){
+
+  const current =
+  data.current;
+
+  const weather =
+  weatherCodes[current.weather_code]
+  || weatherCodes[0];
+
+  document.getElementById("temperature").innerText =
+  `${Math.round(current.temperature_2m)}°`;
+
+  document.getElementById("condition").innerText =
+  weather[0];
+
+  document.getElementById("weatherIcon").src =
+  weather[1];
+
+  document.getElementById("feelsLike").innerText =
+  `${Math.round(current.apparent_temperature)}°`;
+
+  document.getElementById("humidity").innerText =
+  `${current.relative_humidity_2m}%`;
+
+  document.getElementById("wind").innerText =
+  `${current.wind_speed_10m}
+  ${unit === "metric" ? "km/h" : "mph"}`;
+
+  document.getElementById("precipitation").innerText =
+  `${current.precipitation} mm`;
+
+}
+
+/* FORECAST */
+
+function renderForecast(data){
+
+  forecastGrid.innerHTML = "";
+
+  data.daily.time.forEach((day,index)=>{
+
+    const weather =
+    weatherCodes[data.daily.weather_code[index]]
+    || weatherCodes[0];
+
+    const card =
+    document.createElement("div");
+
+    card.className =
+    "forecast-card";
+
+    if(index === selectedDayIndex){
+      card.classList.add("active");
+    }
+
+    const date =
+    new Date(day);
+
+    card.innerHTML = `
+
+      <h3>
+        ${date.toLocaleDateString("pt-BR",{
+          weekday:"short"
+        })}
+      </h3>
+
+      <img src="${weather[1]}">
+
+      <p>${weather[0]}</p>
+
+      <strong>
+        ${Math.round(data.daily.temperature_2m_max[index])}°
+        /
+        ${Math.round(data.daily.temperature_2m_min[index])}°
+      </strong>
+
+    `;
+
+    card.addEventListener("click",()=>{
+
+      selectedDayIndex = index;
+
+      renderForecast(data);
+
+      renderHourly(data,index);
+
+    });
+
+    forecastGrid.appendChild(card);
+
+  });
+
+}
+
+/* HOURLY */
+
+function renderHourly(data, dayIndex){
+
+  hourlyGrid.innerHTML = "";
+
+  const start =
+  dayIndex * 24;
+
+  const end =
+  start + 24;
+
+  for(let i=start;i<end;i+=3){
+
+    const weather =
+    weatherCodes[data.hourly.weather_code[i]]
+    || weatherCodes[0];
+
+    const card =
+    document.createElement("div");
+
+    card.className =
+    "hour-card";
+
+    card.innerHTML = `
+
+      <h4>
+        ${new Date(data.hourly.time[i])
+        .toLocaleTimeString("pt-BR",{
+          hour:"2-digit",
+          minute:"2-digit"
+        })}
+      </h4>
+
+      <img src="${weather[1]}">
+
+      <p>${weather[0]}</p>
+
+      <div class="hour-temp">
+        ${Math.round(data.hourly.temperature_2m[i])}°
+      </div>
+
+    `;
+
+    hourlyGrid.appendChild(card);
+
+  }
+
+}
+
+/* GEOLOCATION */
+
+function getUserLocation(){
+
+  navigator.geolocation.getCurrentPosition(async(pos)=>{
+
+    currentLat =
+    pos.coords.latitude;
+
+    currentLon =
+    pos.coords.longitude;
+
+    fetchWeather();
+
+  });
+
+}
