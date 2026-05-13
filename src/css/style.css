@@ -56,3 +56,613 @@ body{
   --hover:rgba(255,255,255,.45);
 
 }
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+  font-family:
+  Arial,
+  Helvetica,
+  sans-serif;
+
+  min-height:100vh;
+
+  background:
+  linear-gradient(
+    to bottom right,
+    var(--bg1),
+    var(--bg2),
+    var(--bg3)
+  );
+
+  color:var(--text);
+
+  padding:20px;
+
+  transition:.4s;
+
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container{
+
+  width:100%;
+
+  max-width:1400px;
+
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:1fr 2fr;
+
+  gap:20px;
+
+}
+
+.card{
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(12px);
+
+  border-radius:24px;
+
+  padding:25px;
+
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:25px;
+
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-wrapper{
+  position:relative;
+}
+
+.search-box{
+
+  display:flex;
+
+  gap:10px;
+
+}
+
+.search-box input{
+
+  flex:1;
+
+  min-width:0;
+
+  padding:14px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.1);
+
+  color:var(--text);
+
+  font-size:1rem;
+
+}
+
+.search-box input::placeholder{
+
+  color:#cbd5e1;
+
+}
+
+.search-box button,
+select{
+
+  border:none;
+
+  outline:none;
+
+  cursor:pointer;
+
+  border-radius:14px;
+
+  padding:14px 18px;
+
+  background:var(--accent);
+
+  color:#0f172a;
+
+  font-weight:bold;
+
+  transition:.3s;
+
+}
+
+.search-box button:hover,
+select:hover{
+
+  transform:translateY(-2px);
+
+}
+
+.search-results{
+
+  position:absolute;
+
+  width:100%;
+
+  top:65px;
+
+  left:0;
+
+  z-index:100;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+
+}
+
+.result-item{
+
+  background:rgba(15,23,42,.96);
+
+  padding:14px;
+
+  border-radius:14px;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  border:1px solid transparent;
+
+  overflow:hidden;
+
+}
+
+.result-item:hover{
+
+  border-color:var(--accent);
+
+  transform:translateY(-2px);
+
+}
+
+.result-item strong{
+
+  display:block;
+
+  margin-bottom:4px;
+
+}
+
+.result-item span{
+
+  color:#cbd5e1;
+
+  font-size:.9rem;
+
+}
+
+/* =========================
+   CURRENT WEATHER
+========================= */
+
+.current-weather{
+
+  text-align:center;
+
+}
+
+.weather-icon{
+
+  width:140px;
+
+  max-width:100%;
+
+}
+
+.temp{
+
+  font-size:4rem;
+
+  font-weight:bold;
+
+  word-break:break-word;
+
+}
+
+.condition{
+
+  margin-top:8px;
+
+  color:var(--muted);
+
+}
+
+.location{
+
+  margin-top:8px;
+
+  word-break:break-word;
+
+}
+
+/* =========================
+   METRICS
+========================= */
+
+.metrics{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:15px;
+
+}
+
+.metric{
+
+  background:rgba(255,255,255,.06);
+
+  padding:18px;
+
+  border-radius:18px;
+
+  transition:.3s;
+
+  overflow:hidden;
+
+}
+
+.metric:hover{
+
+  background:var(--hover);
+
+}
+
+.metric h4{
+
+  color:var(--muted);
+
+  margin-bottom:8px;
+
+}
+
+.metric p{
+
+  font-size:1.2rem;
+
+  font-weight:bold;
+
+  word-break:break-word;
+
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.top-bar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+
+}
+
+.controls{
+
+  display:flex;
+
+  gap:10px;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+}
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+.theme-btn{
+
+  width:52px;
+  height:52px;
+
+  min-width:52px;
+
+  border:none;
+  outline:none;
+
+  border-radius:14px;
+
+  background:var(--accent);
+
+  color:#0f172a;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+.theme-btn:hover{
+
+  transform:
+  translateY(-2px)
+  scale(1.03);
+
+}
+
+.theme-btn:active{
+
+  transform:scale(.96);
+
+}
+
+.theme-btn svg{
+
+  transition:.4s;
+
+}
+
+/* =========================
+   FORECAST
+========================= */
+
+.forecast-grid{
+
+  margin-top:25px;
+
+  display:grid;
+
+  grid-template-columns:repeat(7,1fr);
+
+  gap:15px;
+
+}
+
+.forecast-card{
+
+  background:rgba(255,255,255,.06);
+
+  border-radius:18px;
+
+  padding:18px;
+
+  text-align:center;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  border:1px solid transparent;
+
+  overflow:hidden;
+
+  min-width:0;
+
+}
+
+.forecast-card:hover,
+.forecast-card.active{
+
+  border-color:var(--accent);
+
+  transform:translateY(-3px);
+
+}
+
+.forecast-card img{
+
+  width:55px;
+
+  max-width:100%;
+
+  margin:10px 0;
+
+}
+
+.forecast-card h3,
+.forecast-card p,
+.forecast-card strong{
+
+  word-break:break-word;
+
+}
+
+/* =========================
+   HOURLY
+========================= */
+
+.hourly-section{
+
+  margin-top:40px;
+
+}
+
+.hourly-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(110px,1fr));
+
+  gap:15px;
+
+}
+
+.hour-card{
+
+  background:rgba(255,255,255,.06);
+
+  border-radius:18px;
+
+  padding:16px;
+
+  text-align:center;
+
+  overflow:hidden;
+
+}
+
+.hour-card img{
+
+  width:45px;
+
+  max-width:100%;
+
+  margin:10px auto;
+
+}
+
+.hour-temp{
+
+  margin-top:8px;
+
+  font-weight:bold;
+
+}
+
+/* =========================
+   FAVORITES
+========================= */
+
+.favorites{
+
+  background:rgba(255,255,255,.05);
+
+  border-radius:18px;
+
+  padding:18px;
+
+}
+
+.favorites-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:15px;
+
+  flex-wrap:wrap;
+
+}
+
+.favorite-item{
+
+  background:rgba(255,255,255,.06);
+
+  padding:12px;
+
+  border-radius:12px;
+
+  margin-bottom:10px;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+  overflow:hidden;
+
+  word-break:break-word;
+
+}
+
+.favorite-item:hover{
+
+  background:var(--hover);
+
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.5);
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:999;
+
+}
+
+.hidden{
+  display:none;
+}
+
+.spinner{
+
+  width:60px;
+  height:60px;
+
+  border:5px solid rgba(255,255,255,.2);
+
+  border-top-color:#fff;
+
+  border-radius:50%;
+
+  animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
